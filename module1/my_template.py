@@ -1,6 +1,6 @@
 """My template
 """
-
+import numpy as np
 def main():
     """Driven Function
     """
