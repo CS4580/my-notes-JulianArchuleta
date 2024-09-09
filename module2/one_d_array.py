@@ -37,6 +37,9 @@ def main():
     pos_numbers = [2, 1,5, 10]
     new_array = np.array(pos_numbers, dtype=np.ushort)
     print(new_array, new_array.dtype)
+    # Float data
+    new_array = np.array(pos_numbers, dtype=np.float32)
+    print(new_array, new_array.dtype)
     
 
 
