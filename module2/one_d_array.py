@@ -41,6 +41,7 @@ def main():
     new_array = np.array(pos_numbers, dtype=np.float32)
     print(new_array, new_array.dtype)
     
+    
 
 
 
