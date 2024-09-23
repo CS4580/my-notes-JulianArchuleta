@@ -1,4 +1,4 @@
 Pip Packages
-panda
-numpy
-kaggle
+-panda
+-numpy
+-kaggle
