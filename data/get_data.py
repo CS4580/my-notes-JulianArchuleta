@@ -5,7 +5,7 @@ import os
 import requests
 from io import BytesIO
 SERVER_URL = "http://icarus.cs.weber.edu/~hvalle/cs4580/data/"
-FILE_NAME = "pandas02Data.zip"
+FILE_NAME = "wine-reviews.zip"
 
 
 def download_file(url, file_name):
@@ -53,8 +53,8 @@ def unzip_file(file_name):
 def main(server_url, file_name):
     """Driven Function
     """    
-    download_file(server_url,  file_name)
-    
+    #download_file(server_url,  file_name)
+    unzip_file(file_name)
     
 
 if(__name__ == '__main__'):
