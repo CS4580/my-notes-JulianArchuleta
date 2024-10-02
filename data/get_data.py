@@ -5,7 +5,7 @@ import os
 import requests
 from io import BytesIO
 SERVER_URL = "http://icarus.cs.weber.edu/~hvalle/cs4580/data/"
-FILE_NAME = "wine-reviews.zip"
+FILE_NAME = "plottingDemo01.zip"
 
 
 def download_file(url, file_name):
@@ -43,7 +43,7 @@ def unzip_file(file_name):
     """
     # TODO: Unzip file    
     with zipfile.ZipFile(file_name, "r") as zip_ref:
-        zip_ref.extractall()
+        zip_ref.extractall("data")
         print(f'Unzipped {file_name}')
     os.remove(file_name)
     
@@ -53,8 +53,8 @@ def unzip_file(file_name):
 def main(server_url, file_name):
     """Driven Function
     """    
-    #download_file(server_url,  file_name)
-    unzip_file(file_name)
+    download_file(server_url,  file_name)
+    #unzip_file(file_name)
     
 
 if(__name__ == '__main__'):
