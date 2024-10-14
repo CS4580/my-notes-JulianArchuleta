@@ -5,12 +5,11 @@ import os
 import requests
 from io import BytesIO
 SERVER_URL = "http://icarus.cs.weber.edu/~hvalle/cs4580/data/"
-FILE_NAME = "plottingDemo01.zip"
+FILE_NAME = "seaborData.zip"
 
 
 def download_file(url, file_name):
     """Download a file from the server and save it to pwd
-    
     Parameters
     ----------
     url : str
@@ -48,13 +47,11 @@ def unzip_file(file_name):
     os.remove(file_name)
     
     
-
-
+    
 def main(server_url, file_name):
     """Driven Function
     """    
     download_file(server_url,  file_name)
-    #unzip_file(file_name)
     
 
 if(__name__ == '__main__'):
