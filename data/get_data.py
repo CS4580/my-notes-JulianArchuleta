@@ -5,7 +5,7 @@ import os
 import requests
 from io import BytesIO
 SERVER_URL = "http://icarus.cs.weber.edu/~hvalle/cs4580/data/"
-FILE_NAME = "seaborData.zip"
+FILE_NAME = "movies.csv"
 
 
 def download_file(url, file_name):
