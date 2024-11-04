@@ -64,3 +64,16 @@ Ex: $A = {1, 2, 3, 4}$ and $B = {3, 4, 5, 6}$ = $\frac{2}{6}$ or $0.33$
 # see
 def jaccard_similarity
 ```
+
+### KNN with Weighted Jaccard Similarity Index
+
+The traditional JAccard works well when doing `one-to-one` compairsons between category.
+
+One solution is the `weighted` version.
+
+- Build a dictionary for `each genre` of movies in our preffered list
+
+```python
+# see
+def jaccard_similiarty_weighted()
+```
