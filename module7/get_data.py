@@ -4,7 +4,8 @@
 """
 CS 4580 - Assignment 5. Titanic Crew Analysis
 """
-import sys, os
+import sys
+import os
 import requests
 import pandas as pd
 # from sklearn.preprocessing import LabelEncoder
@@ -13,7 +14,7 @@ import pandas as pd
 # Constants
 ICARUS_CS4580_DATASET_URL = 'http://icarus.cs.weber.edu/~hvalle/cs4580/data'
 DATA_FOLDER = 'data'
-    
+
 
 def download_dataset(url, data_file, data_folder=DATA_FOLDER):
     """
@@ -32,7 +33,7 @@ def download_dataset(url, data_file, data_folder=DATA_FOLDER):
     - If the dataset file already exists in the specified directory, the function will not download it again.
     - If the download fails, an error message will be printed.
     """
-    
+
     # Check if the data folder exists and file_path is a valid path
     if not os.path.exists(data_folder):
         os.makedirs(data_folder)
@@ -53,7 +54,6 @@ def download_dataset(url, data_file, data_folder=DATA_FOLDER):
         print(f'Downloaded dataset {data_file} to {data_folder}')
     else:
         print(f'Error downloading dataset {data_file} from {url}')
-    
 
 
 def load_data(file_path, index_col=None):
@@ -89,7 +89,6 @@ def load_data(file_path, index_col=None):
     return df
 
 
-
 def main():
     # TASK 1: Get dataset from server
     print(f'Task 1: Download dataset from server')
@@ -101,7 +100,6 @@ def main():
     data = load_data(data_file, index_col='IMDB_id')
     print(f'Loaded {len(data)} records')
     # TODO: The rest of your code goes here
-
 
 
 if __name__ == '__main__':
