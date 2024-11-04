@@ -18,8 +18,13 @@ def print_top_k(df, sorted_value, comparison_type):
     counter = 1
     for idx, row in df.head(K).iterrows():
         print(f'Top {counter} match:[{idx}]:{row["year"]}, {
-              row["title"]},{row["genres"]},  {row[sorted_value]}')
+              row["title"]}, {row["genres"]}, [{row[sorted_value]}]')
         counter += 1
+        
+        
+def euclidean_distance(base_case_year: int, comparator_year: int):
+    return abs(base_case_year - comparator_year)
+
 
 
 def knn_analysis_driver(data_df, base_case, comparison_type, metric_func, sorted_value='metric'):
@@ -52,6 +57,10 @@ def main():
     print(f'Comparing all movies to our base case: {base_case["title"]}')
     knn_analysis_driver(data_df=data, base_case=base_case, comparison_type='genres',
                         metric_func=metric_stub, sorted_value='metric')
+    # TASK 4: KNN Analysis with Euclidean Distance
+    print(f'Task 4: KNN Analysis with Euclidean Distance')
+    knn_analysis_driver(data_df=data, base_case=base_case, comparison_type='year',
+                        metric_func=euclidean_distance, sorted_value='metric')
 
 
 if __name__ == '__main__':
