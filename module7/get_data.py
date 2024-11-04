@@ -72,4 +72,4 @@ def main():
     print(f'Loaded {len(data)} records')
 
 if __name__ == '__main__':
-    main()
+    main() 
