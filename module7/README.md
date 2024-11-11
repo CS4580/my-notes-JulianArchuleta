@@ -169,3 +169,32 @@ How do we measure `accuracy` of the prediction?
 ```python
 accuracy_metric.py
 ```
+
+### Confusion Matrix
+
+It is performed to measure how well your classification model is. The model could be `binary` or multi-class. Each entry in a confusion matrix represents a specific combination of `predicted vs actual` classes.
+
+For binary classification, you have `four` parts:
+
+- `True Positive (TP)`: Correctly predicted positive obersvations
+- `True Negative(TN)`: Correctly predicted positive obersvations
+- `False Positive (FP)`: Incorrectly predicted positive obersvations(`Type I Error`)
+- `False Negative (FN)`: Incorrectly predicted positive obersvations(`Type II Error`)
+
+The structure of the matric is as follows:
+| | Predicated Positive | Predicated Negative |
+|-------|--------------------|---------------------|
+|Actual Positive | True Positive (TP) | False Negative (FN) |
+|Actual Negative | False Positive (FP) | True Negative (TN) |
+
+Key metrics:
+
+- `Accuracy` - $\frac{{TP + TN}}{{TP + TN + FP + FN}}$
+- `Precision` - $\frac{{TP}}{{TP+FP}}$ (useful for imbalance classes)
+- `Recall` (or sensitivity) = $\frac{{TP}}{{TP+FN}}$
+- `F1 Score` = $2 \times \frac{{Precission \times Recall}}{{Precision + Recall}}$ (harmonic mean of Precision and recall)
+
+```python
+# see
+confusion_matrix.py
+```
