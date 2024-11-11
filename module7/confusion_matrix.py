@@ -11,15 +11,16 @@ def main():
     ideal_results = [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2]
     print(f'Accuracy = {accuracy_score(actual_results, prediction)*100:.2f}%')
     print(f'Confusion matrix:\n{confusion_matrix(actual_results, prediction)}')
-    print(f'Classification Report:\n{classification_report(actual_results, prediction, target_names=data_labels)}')
-    
+    print(f'Classification Report:\n{classification_report(
+        actual_results, prediction, target_names=data_labels)}')
+
     # Generate a confusion matrix for Ideal Matrix
     cm = confusion_matrix(actual_results, prediction)
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=data_labels)
+    disp = ConfusionMatrixDisplay(
+        confusion_matrix=cm, display_labels=data_labels)
     disp.plot()
     plt.title(' Confusion Matrix')
     plt.show()
-    
 
 
 if __name__ == '__main__':
