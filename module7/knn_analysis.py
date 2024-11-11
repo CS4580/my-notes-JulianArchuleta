@@ -114,18 +114,57 @@ def cosine_and_weighted_jaccard(df: pd.DataFrame, plots: str, comparator_movie: 
     return wjs_result + cs_result
 
 
-def knn_analysis_driver(data_df, base_case, comparison_type, metric_func, sorted_value='metric'):
+def knn_analysis_driver(
+    data_df, base_case, comparison_type, metric_func, sorted_value="metric"
+):
+    """Basic KNN analysis
+
+    Args:
+        df (DataFrame): Pandas DataFrame containing the data
+        base_case (DataFrame): Base case to compare against
+        comparison_type (str): Comparison type
+        metric_stub (def): Function to calculate the metric
+    """
+    # Filter data by YEAR_BASE
     df = data_df.copy()
-    # WIP: Create df of filter data
-    df[sorted_value] = df[comparison_type].map(
-        lambda x: metric_func(base_case[comparison_type], x))
-    # Sort return values from functio, stub
-    if 'jaccard' in metric_func.__name__:
+
+    # The following evaluates each movie with the given metric.
+    # 'x' is the value in each row in the 'comparison_type' column
+    if metric_func.__name__ == "weighted_jaccard_similarity":
+        # genre_weighted_dictionary = _get_weighted_jaccard_similarity_dict(df)
+        df[sorted_value] = df[comparison_type].map(
+            lambda x: metric_func(df, x)
+        )
+    elif metric_func.__name__ == "cosine_and_weighted_jaccard":
+        # genre_weighted_dictionary = _get_weighted_jaccard_similarity_dict(df)
+        # combined plots are needed for the cosine similarity metric:
+        selections_df = [df.loc[BASE_CASE_ID], df.loc[SECOND_CASE_ID]]
+        plots = ""
+        for movie in selections_df:
+            plots += movie["plot"] + " "
+
+        df[sorted_value] = df.apply(lambda x: metric_func(df, plots, x), axis='columns'
+                                    )
+    else:
+        df[sorted_value] = df[comparison_type].map(
+            lambda x: metric_func(base_case[comparison_type], x)
+        )
+
+    # Sor the DataFrame by the metric
+    if "jaccard" in metric_func.__name__ or "cosine" in metric_func.__name__:
+        # Jaccard similarity is a similarity measure, so we want to sort in descending order
         sorted_df = df.sort_values(by=sorted_value, ascending=False)
     else:
-        sorted_df = df.sort_values(by=sorted_value)  # default is ascending
-    sorted_df = sorted_df.drop(BASE_CASE_ID)  # drop base case
-    # Print top 10 values
+        sorted_df = df.sort_values(by=sorted_value)
+    # Drop the base case for weighted Jaccard similarity
+    if metric_func.__name__ == "weighted_jaccard_similarity":
+        selections_df = [df.loc[BASE_CASE_ID], df.loc[SECOND_CASE_ID]]
+        for movie in selections_df:
+            sorted_df.drop(movie.name, inplace=True)
+    else:
+        sorted_df.drop(BASE_CASE_ID, inplace=True)  # drop the base case
+
+    # print the top K closest matches, left justified
     print_top_k(sorted_df, sorted_value, comparison_type)
 
 
@@ -198,6 +237,7 @@ def main():
     print(f'\nTask 8: KNN Analysis with Cosine Similarity')
     knn_analysis_driver(data, base_case, comparison_type='plot',
                         metric_func=cosine_similarity_function, sorted_value='cosine_similarity')
+
     # Task 9: KNN Analysis with Cosine and Weighted Jaccard
     print(f'\nTask 9: KNN Analysis with Cosine and Weighted Jaccard')
     # Add filters
