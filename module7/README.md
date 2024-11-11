@@ -159,3 +159,13 @@ For our example, we will use:
 # See
 cosine_and_weighted_jaccard()
 ```
+
+### Prediction Metrics
+
+A `prediction` is simple a guess about what is goin to transpire. One prediction is `yes` or `no`.
+
+How do we measure `accuracy` of the prediction?
+
+```python
+accuracy_metric.py
+```
