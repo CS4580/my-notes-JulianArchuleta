@@ -124,6 +124,7 @@ def knn_analysis_driver(
         base_case (DataFrame): Base case to compare against
         comparison_type (str): Comparison type
         metric_stub (def): Function to calculate the metric
+        sorted_value (str): Column to sort by (default is 'metric')
     """
     # Filter data by YEAR_BASE
     df = data_df.copy()
